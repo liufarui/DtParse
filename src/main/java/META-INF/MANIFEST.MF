@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Main-Class: com.github.liufarui.dtParse.DtParse
+Class-Path: jackson-core-2.9.8.jar jackson-annotations-2.9.0.jar jackson
+ -databind-2.9.8.jar junit-4.10.jar mysql-connector-java-8.0.19.jar prot
+ obuf-java-3.6.1.jar
+
