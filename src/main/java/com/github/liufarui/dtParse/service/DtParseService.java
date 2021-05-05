@@ -179,16 +179,17 @@ public class DtParseService {
 
         Map<String, DtValue> sqlDataMap = sqlSelect.getDataMap(tables, cColumn, cColumnValue);
 
-        Map<String, DtValue> jsonDataMap = transToMap(StringUtils.humpToLine(jsonStr));
+        Map<String, DtValue> jsonDataMap = transToMap(jsonStr);
 
         StringBuilder sbNotExisted = new StringBuilder();
         StringBuilder sbFailed = new StringBuilder();
 
         jsonDataMap.forEach((key, value) -> {
+            String dbKey = StringUtils.humpToLine(key);
             if (!sqlDataMap.containsKey(key)) {
                 sbNotExisted.append(key).append(" 不存在！\n");
-            } else if (!value.getValue().equals(sqlDataMap.get(key).getValue())) {
-                sbFailed.append(key).append(" 比对失败！Json值：").append(value.getValue()).append("，DB值：").append(sqlDataMap.get(key).getValue()).append("\n");
+            } else if (!value.getValue().equals(sqlDataMap.get(dbKey).getValue())) {
+                sbFailed.append(key).append(" 比对失败！Json值：").append(value.getValue()).append("，DB值：").append(sqlDataMap.get(dbKey).getValue()).append("\n");
             }
         });
 
